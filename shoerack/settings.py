@@ -37,20 +37,24 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
    
     # 'django.contrib.admin',
+    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+     "whitenoise.runserver_nostatic",
     'django.contrib.staticfiles',
     'user','cart',
     'account',
     'rest_framework',
     'adminside',
+    
    
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,11 +113,12 @@ DATABASES={'default' :dj_database_url.parse("postgres://albert:5FjPbOUPOF7djAkAH
 STATIC_URL = 'static/'
 
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'assets')
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'assets')
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
-# STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
