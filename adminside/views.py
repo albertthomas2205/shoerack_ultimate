@@ -344,7 +344,7 @@ def signin(request):
     return render(request,'admin_panel/signin.html')
 
       
-@login_required(login_url='signin')  
+# @login_required(login_url='signin')  
 def adminhome(request):
     
     return render(request,'admin_panel/index.html')
@@ -369,7 +369,7 @@ def block_user_view(request,id):
 
 
 
-@login_required(login_url='signin') 
+# @login_required(login_url='signin') 
 def product(request):
     products = Product.objects.all()
     category = Category.objects.all()
@@ -415,7 +415,7 @@ def deletecoupon(request,id):
 
 
 
-@login_required(login_url='signin') 
+# @login_required(login_url='signin') 
 def category(request):
     if request.method == 'POST':
         categoryname = request.POST.get('category')
@@ -433,7 +433,7 @@ def category(request):
     
     return render(request,'admin_panel/category.html',{'categories':categories,'brand':brand})
 
-@login_required(login_url='signin') 
+# @login_required(login_url='signin') 
 def addbrand(request):
     if request.method == 'POST':
         brandname = request.POST.get('brandname')
@@ -471,7 +471,7 @@ def addproduct(request):
 
 
 
-@login_required(login_url='signin') 
+# @login_required(login_url='signin') 
 def productsizee(request,id):
     product= get_object_or_404(Product,id=id)
     var = Productsize.objects.filter(product = product)
@@ -489,7 +489,7 @@ def productsizee(request,id):
     return render(request,'admin_panel/productsize.html',context)
 
 
-@login_required(login_url='signin') 
+# @login_required(login_url='signin') 
 def editproductsize(request, id):
     product_size = get_object_or_404(Productsize, id=id)
     
@@ -568,7 +568,7 @@ def delete_product (request, id):
         product.delete()
         return redirect('product')
  
-@login_required(login_url='signin')   
+# @login_required(login_url='signin')   
 def Orders(request):
     orders = Order.objects.all().order_by("-created_at")
     paginator = Paginator(orders, per_page=3)

@@ -37,7 +37,6 @@ ALLOWED_HOSTS = ['*']
 INSTALLED_APPS = [
    
     # 'django.contrib.admin',
-    
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -185,5 +184,5 @@ INTERNAL_IPS = [
     # ...
 ]
 
-KEY = 'rzp_test_lCPwFk1fVNkzxq'
-SECRET = 'XIM7YrvSXKWouboilyqQ5bGh'
+KEY = 'rzp_test_g7yTx5V5qp5HRA'
+SECRET = 'nEngF2V5AfKjAR1wEnKZ8ojH'

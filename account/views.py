@@ -24,8 +24,8 @@ def profilehome(request):
     
     except:
         
-            wallet=Wallet.objects.create(user=request.user)
-            wallethistory=None
+        wallet=Wallet.objects.create(user=request.user)
+        wallethistory=None
     email = request.user.email
     parts = email.split("@")
     if len(parts) == 2:
@@ -33,7 +33,7 @@ def profilehome(request):
         print(f"Username: {code}")
     else:
         print("Invalid email address format")
-        
+        # 
   
     return render(request,'profile/profilehome.html',{'addresses':addresses ,'wallet':wallet,'wallethistory':wallethistory,'code':code})
 

@@ -27,7 +27,7 @@ class Usercoupon(models.Model):
     
 
 class Userdetails(models.Model):
-    # userr = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
+    userr = models.ForeignKey(CustomUser,on_delete = models.CASCADE)
     custom_name = models.CharField(max_length = 50)
     house_name = models.CharField(max_length = 30)
     landmark = models.CharField(max_length=50)
@@ -41,7 +41,7 @@ class Userdetails(models.Model):
         return self.userr
     
 class Order(models.Model):
-    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     order_id = models.PositiveIntegerField()
     address = models.ForeignKey(Userdetails,on_delete=models.DO_NOTHING)
@@ -95,7 +95,7 @@ from django.template.defaultfilters import slugify
 
 
 class Cart(models.Model):
-    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     coupon = models.ForeignKey(Coupon,on_delete=models.DO_NOTHING,null=True,blank=True )
     coin_discount = models.IntegerField(default=0)
@@ -127,7 +127,7 @@ class CartItem(models.Model):
 
 class Wallet(models.Model):
     coins=models.PositiveIntegerField(default=0)
-    # user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=True)
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, unique=True)
     def __str__(self):
         return str(self.user)
     
@@ -141,7 +141,7 @@ class Wallethistory(models.Model):
     
 class OrderReturn(models.Model):
     orderitem = models.ForeignKey(OrderItem,on_delete=models.CASCADE)
-    # user=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
+    user=models.ForeignKey(CustomUser,on_delete=models.CASCADE)
     return_status_choices = [
         ('P', 'Pending'),
         ('C', 'Collected'),  
