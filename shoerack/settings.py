@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -110,7 +110,7 @@ AUTH_USER_MODEL='user.CustomUser'
 # }
 
 DATABASES={'default' :dj_database_url.parse("postgres://albert:5FjPbOUPOF7djAkAHmCCxhrtyhtbUiMk@dpg-cohlp2779t8c7383v550-a.oregon-postgres.render.com/ecom_omvm")}
-STATIC_URL = 'static/'
+STATIC_URL = 'assets/'
 
 
 # STATICFILES_DIRS = [
