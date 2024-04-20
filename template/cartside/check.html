@@ -1,0 +1,63 @@
+<!-- cart.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <!-- ... (other parts of the template) ... -->
+
+    <h2>Apply Coupon</h2>
+    <form id="coupon-form">
+        {% csrf_token %}
+        <input type="text" id="coupon-code" placeholder="Enter coupon code">
+        <button type="submit">Apply Coupon</button>
+    </form>
+
+    <p id="coupon-feedback"></p>
+    
+    <h2>Available Coupons</h2>
+    <ul>
+        {% for coupon in coupons %}
+            <li>{{ coupon.code }} - {{ coupon.discount }}% off</li>
+        {% endfor %}
+    </ul>
+    
+    <p id="applied-coupon"></p>
+
+    <!-- ... (rest of the template) ... -->
+
+    <script>
+        $(document).ready(function () {
+            // Apply coupon using AJAX
+            $('#coupon-form').on('submit', function (e) {
+                e.preventDefault();
+                const couponCode = $('#coupon-code').val();
+                const applyCouponURL = '{% url 'apply_coupon' '' %}' + couponCode + '/';
+                $.ajax({
+                    type: 'POST',
+                    url: applyCouponURL,
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        const feedback = response.success ? 
+                            `Coupon applied: ${response.applied_coupon.code} (${response.applied_coupon.discount}% off)` :
+                            'Coupon not found';
+                        $('#coupon-feedback').text(feedback);
+
+                        if (response.applied_coupon) {
+                            $('#applied-coupon').text(`Applied Coupon: ${response.applied_coupon.code}`);
+                        } else {
+                            $('#applied-coupon').text('');
+                        }
+                    },
+                    error: function () {
+                        $('#coupon-feedback').text('Error applying coupon');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
